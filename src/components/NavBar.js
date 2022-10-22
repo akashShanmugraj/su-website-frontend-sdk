@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HiBars3BottomRight } from "react-icons/hi2";
-import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 
 const Navbar = ({ canScrollAdjust = false }) => {
   const [onTop, setOnTop] = useState(canScrollAdjust);
