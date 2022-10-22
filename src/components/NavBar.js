@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 
-const Navbar = () => {
-  const [onTop, setOnTop] = useState(true);
+const Navbar = ({ canScrollAdjust = false }) => {
+  const [onTop, setOnTop] = useState(canScrollAdjust);
 
   const changeOnTop = () => {
     console.log(window);
-    if (window.scrollY >= 150) {
+    if (!canScrollAdjust) return;
+    if (window.scrollY >= 100) {
       setOnTop(false);
     } else {
       setOnTop(true);
@@ -22,7 +25,7 @@ const Navbar = () => {
       <div
         className={`flex justify-between items-center  w-full ${
           onTop
-            ? "p-8 bg-gradient-to-b from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.5)]"
+            ? "p-4 lg:p-8 bg-gradient-to-b from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.5)]"
             : "p-4 bg-gradient-to-b from-[rgba(0,0,0,1)] to-[rgba(0,0,0,1)]"
         } transition-all `}
       >
@@ -31,26 +34,28 @@ const Navbar = () => {
             src="https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/PSG_College_of_Technology_logo.png/220px-PSG_College_of_Technology_logo.png"
             alt="logo"
             className={`h-auto ${
-              onTop ? "w-12" : "w-6"
+              onTop ? "w-8 lg:w-12" : "w-6"
             } transition-all ease-in-out`}
             style={{ filter: "invert(1)" }}
           />
           <div className="space-y-0.5">
             <h1
               className={`${
-                onTop ? "text-3xl" : "text-lg"
+                onTop ? "text-lg lg:text-3xl" : "text-lg"
               } font-serif text-white`}
             >
               Student's Union
             </h1>
             <h2
-              className={`text-sm font-serif text-white ${!onTop && "hidden"}`}
+              className={`text-xs lg:text-sm font-serif text-white ${
+                !onTop && "hidden"
+              }`}
             >
               PSG College of Technology
             </h2>
           </div>
         </div>
-        <div className="flex items-center space-x-6 text-sm">
+        <div className="items-center space-x-6 text-sm hidden lg:flex">
           <NavItem text="SU By Law" />
           <NavItem text="Clubs" />
           <NavItem text="Associations" />
@@ -58,6 +63,11 @@ const Navbar = () => {
           <NavItem text="Gallery" />
           <NavItem text="Our Team" />
           <NavItem text="Contact Us" />
+        </div>
+        <div className="lg:hidden">
+          <button className="text-white">
+            <HiBars3BottomRight size={32} />
+          </button>
         </div>
       </div>
     </nav>
