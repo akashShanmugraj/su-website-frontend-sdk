@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar.js";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { MdOutlineGraphicEq } from "react-icons/md";
 import { FiSun } from "react-icons/fi";
 import { BsTrophy } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { BiLink } from "react-icons/bi";
 
 const COVER_IMAGE_URL =
   "https://images.unsplash.com/photo-1665780993894-ceb3a89bc5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
@@ -47,7 +49,7 @@ const Landing = () => {
           </div>
           <AboutCollege />
         </div>
-        <div className="w-full lg:w-1/4 bg-indigo-900 p-8">
+        <div className="w-full lg:w-1/4 bg-indigo-900 py-8 space-y-20">
           <StatSection
             stats={[
               { num: 25, tagline: "Clubs" },
@@ -56,8 +58,10 @@ const Landing = () => {
               { num: 4, tagline: "Wings" },
             ]}
           />
+          <Announcements />
         </div>
       </div>
+      <ContactFooter />
     </div>
   );
 };
@@ -221,7 +225,7 @@ const IconBackgroundSection = ({ title, icon, body }) => {
 
 const StatSection = ({ stats }) => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-x-0 lg:gap-y-8">
+    <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-x-0 lg:gap-y-8 px-8">
       {stats.map((stat, index) => (
         <div className="text-white flex flex-col items-center space-y-1">
           <h1 className="text-6xl font-sans font-bold">{stat.num}</h1>
@@ -231,4 +235,78 @@ const StatSection = ({ stats }) => {
     </div>
   );
 };
+
+const Announcements = () => {
+  const dummyAnnouncements = [
+    {
+      type: "Event",
+      title: "ICAARS 2022",
+      date: "21st - 23rd January 2022",
+      body: "The First and Second International Conference on Advancements in Automation, Robotics and Sensing was hosted in Coimbatore, India by the Department of Robotics and Automation Engineering, PSG College of Technology",
+      link: "https://www.psgtech.edu/icaars2022/",
+    },
+    {
+      type: "Event",
+      title: "INTRAMS 2022",
+      date: "21st - 23rd January 2022",
+      body: "Cultural events are events designed for entertainment and enjoyment of a more or less wide audience.",
+      link: "https://www.psgtech.edu/intrams2022/",
+    },
+    {
+      type: "Classified",
+      title: "Need volunteers for Republic Day",
+      date: "25th January 2022",
+      body: "Volunteers are needed for Republic Day celebrations at PSG College of Technology",
+      link: "https://www.psgtech.edu/",
+    },
+  ];
+
+  const [announcements, setAnnouncements] = useState([
+    ...dummyAnnouncements,
+    ...dummyAnnouncements,
+    ...dummyAnnouncements,
+  ]);
+
+  return (
+    <div className="w-full flex flex-col items-center">
+      <div className="flex flex-col items-center mb-4">
+        <h1 className="text-2xl font-serif text-white">Announcements</h1>
+        <div className="w-[70%] h-[1px] mt-1 bg-white"></div>
+      </div>
+      <div className="flex flex-col space-y-6 w-full py-4 h-[650px] overflow-y-auto">
+        {announcements.map((anmt, index) => (
+          <div className="px-8">
+            <p className="text-sm text-gray-300 italic ">{anmt.type}</p>
+            <div className="flex w-full">
+              <h1 className=" text-white font-bold font-sans w-2/3">
+                {anmt.title}
+              </h1>
+              <p className="text-xs text-gray-300 text-right whitespace-nowrap">
+                {anmt.date}
+              </p>
+            </div>
+            <div className="flex w-full mt-1">
+              <p className="text-xs text-gray-100 text-ellipsis [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] overflow-hidden">
+                {anmt.body}
+              </p>
+              <a href={anmt.link}>
+                <BiLink
+                  size={24}
+                  className="ml-4 text-white hover:text-gray-400"
+                />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ContactFooter = () => {
+  return <footer className="bg-black w-full p-8">
+    <h1 className="text-white font-sans tracking-wider text-4xl uppercase font-semibold">Contact Us</h1>
+  </footer>;
+};
+
 export default Landing;
