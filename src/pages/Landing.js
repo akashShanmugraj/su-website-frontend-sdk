@@ -1,6 +1,9 @@
 import React from "react";
 import Navbar from "../components/Navbar.js";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { MdOutlineGraphicEq } from "react-icons/md";
+import { FiSun } from "react-icons/fi";
+import { BsTrophy } from "react-icons/bs";
 
 const COVER_IMAGE_URL =
   "https://images.unsplash.com/photo-1665780993894-ceb3a89bc5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
@@ -16,7 +19,45 @@ const Landing = () => {
           "Students Union is of epitome importance to maintaining a healthy relationship between all the student activities and the administration."
         }
       />
-      <div className="h-screen bg-red-300"></div>
+      <div className="flex flex-col-reverse lg:flex-row justify-start items-stretch w-full ">
+        <div className="w-full lg:w-3/4">
+          <AboutUs />
+          <div className="lg:grid lg:grid-rows-1 lg:grid-cols-3 lg:items-stretch">
+            <IconBackgroundSection
+              title="Our Mission"
+              icon={<MdOutlineGraphicEq />}
+              body={
+                "Students Union is of epitome importance to maintaining a healthy relationship between all the student activities and the administration. The Students Union has got its own unique set of cabinet members who get selected by the authorities of the college every year. Activities are performed by the Students Union guided by the Dean - Students Affairs and the respective faculty advisors."
+              }
+            />
+            <IconBackgroundSection
+              title="Our Plan"
+              icon={<FiSun />}
+              body={
+                "Our main objective is to identify and encourage creative talents, inculcate the spirit of discipline, leadership, social awareness, and promote physical and mental development among students. We stage competitions based on creativity, cultural literacy, sports, and general awareness, conducting seminars on topics of local, national, and international interest, organising symposia, social welfare activities, and proposing the names of deserving students to Financial Committee for financial assistance."
+              }
+            />
+            <IconBackgroundSection
+              title="Our Vision"
+              icon={<BsTrophy />}
+              body={
+                "The Students Welfare Committee assists students in overcoming challenges that they may encounter during their academic pursuits. It also delivers an indulging academic environment wherein our students will be able to learn, grow, and discover themselves as they aspire to be the change. PSG Tech firmly believes that every individual is a champion, and they deserve to be given the baton to lead the world."
+              }
+            />
+          </div>
+          <AboutCollege />
+        </div>
+        <div className="w-full lg:w-1/4 bg-indigo-900 p-8">
+          <StatSection
+            stats={[
+              { num: 25, tagline: "Clubs" },
+              { num: 38, tagline: "Associations" },
+              { num: 5, tagline: "Schemes" },
+              { num: 4, tagline: "Wings" },
+            ]}
+          />
+        </div>
+      </div>
     </div>
   );
 };
@@ -51,6 +92,142 @@ const HeroCover = ({ image, h1, h2 }) => {
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const AboutUs = () => {
+  const IMAGE =
+    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=449&q=80";
+  return (
+    <div className="w-full p-8 lg:pr-0 flex items-stretch">
+      <div className="w-full lg:w-2/3 lg:mr-8 py-6">
+        <h2 className="text-2xl uppercase font-sans tracking-wider">
+          About Us
+        </h2>
+        <h1 className="text-5xl font-bold uppercase font-sans tracking-wider">
+          Student's Union
+        </h1>
+        <div
+          className="w-full my-4 h-[200px] lg:hidden"
+          style={{
+            background: `url(${IMAGE})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        />
+        <p className="font-sans text-sm mt-8 tracking-wide text-justify lg:text-left">
+          PSG College of Technology aspires to develop life skills and engage
+          students in a variety of activities by hosting seminars, workshops,
+          conferences, and club activities under twenty-six different clubs,
+          thirty-eight unique technical associations, and nine chapters all of
+          which led by PSG's student representative body, the Students Union.
+          The Students Union is the official organization of students at PSG
+          College of Technology. Being the main representative body of the
+          students, the Students Union strives to provide opportunities for the
+          students to forge and scale up their technical skills and knowledge
+          through various affiliated Associations. It also promotes social,
+          cultural, and literacy activities through the Clubs that conduct
+          numerous workshops, guest lectures, and events throughout the year to
+          build opportunities for the students to showcase and sculpt their
+          emerging talents.
+        </p>
+      </div>
+      <div
+        className="w-1/3 hidden lg:block"
+        style={{
+          background: `url(${IMAGE})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      />
+    </div>
+  );
+};
+
+const AboutCollege = () => {
+  const IMAGE = "https://www.psgtech.edu/icaars2022/img/speakers/1.jpg";
+  return (
+    <div className="w-full p-8 lg:pr-0 flex items-stretch">
+      <div className="w-full lg:w-2/3 lg:mr-8 py-6">
+        <h2 className="text-2xl uppercase font-sans tracking-wider">
+          About College
+        </h2>
+        <h1 className="text-5xl font-bold uppercase font-sans tracking-wider">
+          PSG College of Technology
+        </h1>
+        <div
+          className="w-full my-4 h-[200px] lg:hidden"
+          style={{
+            background: `url(${IMAGE})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        />
+        <p className="font-sans text-sm mt-8 tracking-wide text-justify lg:text-left">
+          PSG & Sons' Charities Trust established the PSG Industrial Institute
+          in 1926, which has its headquarters in Peelamedu, Coimbatore. In 1951,
+          G. R. Damodaran founded PSG College of Technology. PSG College of
+          Technology strives to provide ambitious students with a plethora of
+          opportunities, knowledge, and facilities. For years, PSG Tech, as it
+          is fondly called, has been a symbol of pride and quality education not
+          only in its home city but across the nation. PSG College of Technology
+          set a benchmark in the advancing world, thus becoming an institution
+          for academic excellence, with a futuristic mission of providing
+          world-class engineering education, fostering research and development.
+          It inspires innovative applications of technology and moulds young men
+          and women to become potential engineers in this technically
+          competitive world for the betterment of the country. It has stood out
+          amongst all the other competitors in the field of engineering
+          education as an AICTE-approved, Anna University-affiliated, and ISO
+          9001-certified institution.
+        </p>
+      </div>
+      <div
+        className="w-1/3 hidden lg:block"
+        style={{
+          background: `url(${IMAGE})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      />
+    </div>
+  );
+};
+
+const IconBackgroundSection = ({ title, icon, body }) => {
+  return (
+    <div
+      className="bg-emerald-50 p-8 w-full relative"
+      style={{ clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)" }}
+    >
+      {React.cloneElement(icon, {
+        className:
+          "absolute -top-8 -right-8 text-4xl text-emerald-500 opacity-25",
+        size: 196,
+      })}
+      <div className="p-3 rounded-full bg-emerald-800 text-white w-fit shadow-lg ">
+        {React.cloneElement(icon, {
+          size: 32,
+        })}
+      </div>
+      <h1 className="mt-4 font-serif text-xl font-semibold text-emerald-700">
+        {title}
+      </h1>
+      <p className="mt-4 font-sans text-emerald-600 text-sm">{body}</p>
+    </div>
+  );
+};
+
+const StatSection = ({ stats }) => {
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-x-0 lg:gap-y-8">
+      {stats.map((stat, index) => (
+        <div className="text-white flex flex-col items-center space-y-1">
+          <h1 className="text-6xl font-sans font-bold">{stat.num}</h1>
+          <h2 className="font-serif text-sm tracking-wider">{stat.tagline}</h2>
+        </div>
+      ))}
     </div>
   );
 };
