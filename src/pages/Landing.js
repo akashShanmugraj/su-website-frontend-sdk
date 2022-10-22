@@ -4,15 +4,15 @@ import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { MdOutlineGraphicEq } from "react-icons/md";
 import { FiSun } from "react-icons/fi";
 import { BsTrophy } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import { BiLink } from "react-icons/bi";
+import ContactUs from "../components/ContactUs.js";
 
 const COVER_IMAGE_URL =
   "https://images.unsplash.com/photo-1665780993894-ceb3a89bc5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
 
 const Landing = () => {
   return (
-    <div className="w-screen overflow-x-hidden bg-white">
+    <main className="w-screen overflow-x-hidden bg-white">
       <Navbar canScrollAdjust />
       <HeroCover
         image={COVER_IMAGE_URL}
@@ -61,8 +61,8 @@ const Landing = () => {
           <Announcements />
         </div>
       </div>
-      <ContactFooter />
-    </div>
+      <ContactUs />
+    </main>
   );
 };
 
@@ -303,10 +303,5 @@ const Announcements = () => {
   );
 };
 
-const ContactFooter = () => {
-  return <footer className="bg-black w-full p-8">
-    <h1 className="text-white font-sans tracking-wider text-4xl uppercase font-semibold">Contact Us</h1>
-  </footer>;
-};
 
 export default Landing;

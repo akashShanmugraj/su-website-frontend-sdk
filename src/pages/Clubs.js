@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../components/Navbar.js'
 
 const Clubs = () => {
   return (
-    <div>Clubs</div>
+    <div className="w-screen overflow-x-hidden">
+        <Navbar />
+    </div>
   )
 }
 
