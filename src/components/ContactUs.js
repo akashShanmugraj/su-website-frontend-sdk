@@ -10,7 +10,7 @@ const ContactUs = () => {
       <h1 className="text-white font-sans tracking-wider text-4xl uppercase font-semibold">
         Contact Us
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6 mt-8 space-x-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6 mt-8 lg:space-x-12">
         <div className="flex items-center justify-center">
           <iframe
             title="map"
@@ -20,33 +20,33 @@ const ContactUs = () => {
             allowfullscreen=""
           ></iframe>
         </div>
-        <div className="space-y-12">
+        <div className="mt-8 lg:mt-0 space-y-6 lg:space-y-12">
           <div className="flex items-center space-x-4">
             <HiOutlineMail className="text-white" size={32} />
-            <div className="">
+            <div className="flex-1">
               <h1 className="text-gray-400 text-lg font-semibold ">Email</h1>
-              <h2 className="text-white text-xl font-serif">
+              <h2 className="text-white lg:text-xl font-serif">
                 studentsunion@psgtech.ac.in
               </h2>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <BsTelephone className="text-white" size={32} />
-            <div className="">
+            <div className="flex-1">
               <h1 className="text-gray-400 text-lg font-semibold">
                 Phone Number
               </h1>
-              <h2 className="text-white text-xl font-serif">
+              <h2 className="text-white lg:text-xl  font-serif">
                 +91 422 257 0000
               </h2>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <IoLocationOutline className="text-white" size={32} />
-            <div className="">
+            <div className="w-[calc(100%-200px)] overflow-hidden">
               <h1 className="text-gray-400 text-lg font-semibold">Location</h1>
-              <h2 className="text-white text-xl font-serif">
-                F Block 2nd Floor, PSG College of Technology, Coimbatore.
+              <h2 className="text-white lg:text-xl  font-serif">
+                F Block 2nd Floor, <br className="lg:hidden"/>PSG College of Technology, Coimbatore.
               </h2>
             </div>
           </div>

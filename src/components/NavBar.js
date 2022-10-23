@@ -79,7 +79,7 @@ const NavItem = ({ text }) => {
   return (
     <div className="font-sans uppercase">
       <Link
-        to="/as"
+        to="/clubs"
         className="text-white"
         onMouseEnter={(e) => setIsHover(true)}
         onMouseLeave={(e) => setIsHover(false)}
