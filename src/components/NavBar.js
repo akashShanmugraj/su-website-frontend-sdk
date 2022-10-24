@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HiBars3BottomRight } from "react-icons/hi2";
+import { HashLink } from "react-router-hash-link";
 
 const Navbar = ({ canScrollAdjust = false }) => {
   const [onTop, setOnTop] = useState(canScrollAdjust);
@@ -56,11 +57,11 @@ const Navbar = ({ canScrollAdjust = false }) => {
         </div>
         <div className="items-center space-x-6 text-sm hidden lg:flex">
           <NavItem text="SU By Law" />
-          <NavItem text="Clubs" />
-          <NavItem text="Associations" />
+          <NavItem text="Clubs" to="/clubs" />
+          <NavItem text="Associations" to="/clubs#associations" />
           <NavItem text="Schemes & Wings" />
-          <NavItem text="Gallery" />
-          <NavItem text="Our Team" />
+          <NavItem text="Gallery" to="/gallery" />
+          <NavItem text="Our Team" to="/team"/>
           <NavItem text="Contact Us" />
         </div>
         <div className="lg:hidden">
@@ -73,13 +74,15 @@ const Navbar = ({ canScrollAdjust = false }) => {
   );
 };
 
-const NavItem = ({ text }) => {
+const NavItem = ({ text, to = "/" }) => {
   const [isHover, setIsHover] = useState(false);
 
   return (
     <div className="font-sans uppercase">
-      <Link
-        to="/clubs"
+      <HashLink
+        smooth
+        scroll={(el) => el.scrollIntoView({ behavior: "smooth" })}
+        to={to}
         className="text-white"
         onMouseEnter={(e) => setIsHover(true)}
         onMouseLeave={(e) => setIsHover(false)}
@@ -92,7 +95,7 @@ const NavItem = ({ text }) => {
             } transition-all bg-white origin-center`}
           ></div>
         </div>
-      </Link>
+      </HashLink>
     </div>
   );
 };

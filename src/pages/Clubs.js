@@ -8,28 +8,32 @@ const Clubs = () => {
   const [clubs, setClubs] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/albums/1/photos", {})
-      .then((res) => {
-        console.log(res);
-        setClubs(
-          res.data.map((cl) => ({
-            title: cl.title,
-            image_url: cl.url,
-            _id: cl.id,
-          }))
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    for (let i = 0; i < 20; i++) {
+      axios
+        .get(`https://jsonplaceholder.typicode.com/albums/1/photos`, {})
+        .then((res) => {
+          console.log(res);
+          setClubs(
+            res.data.map((cl) => ({
+              title: cl.title,
+              image_url: cl.url,
+              _id: cl.id,
+            }))
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   return (
     <Layout>
-      <div className="p-8 ">
-        <h1 className="text-black tracking-wider text-4xl font-bold uppercase">
-          Clubs
+      <div className="p-8" id="#clubs">
+        <h1 className="text-black tracking-wider text-4xl font-bold flex space-x-2 items-end">
+          <p className="font-cursive text-xl">the</p>
+          <p className="text-4xl uppercase">Clubs</p>
+          <p className="font-cursive text-xl">of PSG</p>
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 items-stretch w-full mt-8">
           {clubs.map((club) => (
@@ -37,9 +41,11 @@ const Clubs = () => {
           ))}
         </div>
       </div>
-      <div className="p-8 ">
-        <h1 className="text-black tracking-wider text-4xl font-bold uppercase">
-          Associations
+      <div className="p-8" id="#associations">
+        <h1 className="text-black tracking-wider text-4xl font-bold flex space-x-2 items-end">
+          <p className="font-cursive text-xl">the</p>
+          <p className="text-4xl uppercase">Associations</p>
+          <p className="font-cursive text-xl">of PSG</p>
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 items-stretch w-full mt-8">
           {clubs.map((club) => (

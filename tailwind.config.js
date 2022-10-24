@@ -5,6 +5,7 @@ module.exports = {
     fontFamily: {
       sans: ['"Open Sans"', "sans-serif"],
       serif: ["Merriweather", "serif"],
+      cursive: ["Freehand", "cursive"],
     },
   },
   variants: {
