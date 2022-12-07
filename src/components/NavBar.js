@@ -44,7 +44,7 @@ const Navbar = ({ canScrollAdjust = false }) => {
                 onTop ? "text-lg lg:text-3xl" : "text-lg"
               } font-serif text-white`}
             >
-              Student's Union
+              Students Union
             </h1>
             <h2
               className={`text-xs lg:text-sm font-serif text-white ${
