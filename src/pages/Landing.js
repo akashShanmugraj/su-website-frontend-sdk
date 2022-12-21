@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar.js";
+import Navbar from "../components/NavBar.js";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { MdOutlineGraphicEq } from "react-icons/md";
 import { FiSun } from "react-icons/fi";

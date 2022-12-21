@@ -1,6 +1,6 @@
 import React from "react";
 import ContactUs from "../components/ContactUs.js";
-import Navbar from "../components/Navbar.js";
+import Navbar from "../components/NavBar.js";
 
 const Layout = ({ children }) => {
   return (
