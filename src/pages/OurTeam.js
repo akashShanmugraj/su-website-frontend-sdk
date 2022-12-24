@@ -1,32 +1,104 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { IoSparklesOutline } from "react-icons/io5";
 import Layout from "./Layout";
-const Person = ({ name, role1, image, role2 }) => {
+const Person = ({ name, role1 = "", image, role2 = "" }) => {
+  console.log(image);
   return (
-    <div className="flex flex-col px-8 justify-start items-center text-center">
+    <div className="flex-auto md:flex flex-col px-8 justify-center items-center text-center">
       {role1.length > 0 && (
-        <div className=" w-full mt-8 font-bold text-2xl h-[20%]">{role1}</div>
+        <div className=" w-full mt-8 uppercase tracking-widest text-xl h-[20%] whitespace-nowrap">
+          {role1}
+        </div>
       )}
       <div className={`${role1.length > 0 ? "h-[60%]" : "h-[70%]"}`}>
-        <div
-          className=" h-36 w-36 rounded-full mt-2"
+        {image && <div
+          className="h-44 w-44 aspect-square rounded-full mt-2 border-[#b5ecd8] border-8 box-border"
           style={{
             background: `url(${image})`,
-            backgroundSize: "cover",
+            backgroundSize: "cover ",
             backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
           }}
-        ></div>
+        ></div>}
       </div>
-      <div className=" w-full mt-8 font-bold text-2xl h-[10%]">{name}</div>
-      <div className=" font-semibold h-[10%] mt-8">{role2}</div>
+      <div className=" w-full mt-8 font-bold text-lg h-[10%] whitespace-nowrap">
+        {name}
+      </div>
+      <div className=" font-semibold h-[10%] mt-8 text-indigo-700">{role2}</div>
     </div>
   );
 };
+
+const getYears = () => {
+  let years = [];
+  for (let i = 2015; i <= new Date().getFullYear(); i++) {
+    years.push(`${i}-${i + 1}`);
+  }
+  return years;
+};
+
 const OurTeam = () => {
+  const [team, setTeam] = useState([]);
+  const [chair, setChair] = useState({});
+  const [CoChair, setCoChair] = useState({});
+  const [Secremale, setSecremale] = useState({});
+  const [Secrefemale, setSecrefemale] = useState({});
+  const [SecreScie, setSecreScie] = useState({});
+  const [yearButton, setYearButton] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(() => {
+    if (yearButton) {
+      for (let index = 0; index < yearButton.length; index++) {
+        const element = yearButton[index];
+        if (element.role === "Chairperson") {
+          setChair(element);
+        } else if (element.role === "Co-Chairperson") {
+          setCoChair(element);
+        } else if (element.role === "Secretary(Male)") {
+          setSecremale(element);
+        } else if (element.role === "Secretary(Female)") {
+          setSecrefemale(element);
+        } else if (
+          element.role === "Secretary(Science)" ||
+          element.role === "Associate Chairperson"
+        ) {
+          setSecreScie(element);
+        }
+      }
+    }
+  }, [yearButton]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3002/api/office-bearers")
+      .then((res) => {
+        // setTeam(res.data);
+        let teams = res.data;
+        let year_wise = {};
+        for (let index = 0; index < teams.length; index++) {
+          let element = teams[index];
+          if (year_wise[element.year]) {
+            year_wise[element.year].push(element);
+          } else {
+            year_wise[element.year] = [element];
+          }
+        }
+        // console.log(year_wise);
+        setTeam(year_wise);
+        setYearButton(year_wise['2022-2023'])
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center font-sans">
-        <div className="font-bold text-lg ">OUR TEAM</div>
-        <div className="flex flex-row mt-4">
+        <div className="tracking-wider text-3xl mt-4">
+          OUR <span className="font-bold">TEAM</span>
+        </div>
+        <div className="flex-auto lg:flex flex-row mt-4 w-full">
           <Person
             name="Shri. L. Gopalakrishnan"
             role1="Chief Patron"
@@ -52,20 +124,20 @@ const OurTeam = () => {
             role2=""
           />
         </div>
-        <div className="flex flex-row items-center justify-center mt-16">
+        <div className="flex-auto lg:flex flex-row items-center justify-center mt-16">
           <div className="font-bold w-full">
             <div className="font-bold text-2xl text-center">
               Student Welfare & Counselling
             </div>
-            <div className="flex flex-row mt-4">
+            <div className="flex-auto lg:flex flex-row mt-4">
               <Person
-                name="Dr. D. Karthika Renuka"
+                name="Dr.D. Karthika Renuka"
                 role1=""
                 image="https://su.psgtech.ac.in/image/team/faculty/karthika.jpg"
                 role2="Associate Dean"
               />
               <Person
-                name="Mr. P. Dhanabal"
+                name="Mr.P. Dhanabal"
                 role1=""
                 image="https://su.psgtech.ac.in/image/team/faculty/Dhanabal.jpg"
                 role2="Faculty Advisor"
@@ -76,7 +148,7 @@ const OurTeam = () => {
             <div className="font-bold text-2xl text-center">
               General Counselling
             </div>
-            <div className="flex flex-row mt-4">
+            <div className="flex-auto lg:flex flex-row mt-4">
               <Person
                 name="Dr. S. Sankarakumar"
                 role1=""
@@ -92,63 +164,120 @@ const OurTeam = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mt-8">
+        <div className="flex-auto lg:flex flex-col mt-12">
+          <div className="font-bold text-center text-3xl">Club Activities</div>
+          <div className="text-center text-2xl mt-8 uppercase tracking-widest">
+            Associated Clubs
+          </div>
+          <div className="font-bold text-center text-xl mt-4">
+            Tech Music , Dramatics Club , Astronomy Club , Animal Welfare Club ,
+            WDC , Martial Arts Club
+          </div>
+          <div className="flex-auto lg:flex lg:justify-center flex-row mt-4">
+            <Person
+              name="Dr. J. Prabhavathi"
+              role1=""
+              role2="Faculty Advisor"
+              image="https://su.psgtech.ac.in/image/team/faculty/prabavathi.jpg"
+            />
+            <Person
+              name="Dr. V .Krishnaraj"
+              role1=""
+              role2="Faculty Advisor"
+              image="https://su.psgtech.ac.in/image/team/faculty/IMG_7269.jpg"
+            />
+          </div>
+          <div className="text-center text-2xl mt-8 uppercase tracking-widest">
+            Associated Clubs
+          </div>
+          <div className="font-bold text-center text-xl mt-4">
+            CAP & Nature Club, ELS, Entrepreneurs Club, NSS, Tamil Mandram, Fine
+            Arts Club, YRC, Rotaract Club, Radio Hub
+          </div>
+          <div className="flex-auto lg:flex lg:justify-center flex-row mt-4 ">
+            <Person
+              name="Dr. P. Visalakshi"
+              role1=""
+              role2="Faculty Advisor"
+              image="https://su.psgtech.ac.in/image/team/faculty/vishalakshi.jpg"
+            />
+            <Person
+              name="Dr. R. Senthilkumar"
+              role1=""
+              role2="Faculty Advisor"
+              image="https://su.psgtech.ac.in/image/team/faculty/senthilkumarS.jpg"
+            />
+          </div>
+          <div className="text-center text-2xl mt-8 uppercase tracking-widest">
+            Associated Clubs
+          </div>
+          <div className="font-bold text-center text-xl mt-4">
+            Higher Education Forum, Pathshala Club, GLF, SRC, Industry
+            (Alumni)-Interaction Forum, Book Readers Club
+          </div>
+          <div className="flex-auto lg:flex lg:justify-center flex-row mt-4">
+            <Person
+              name="Mr. D. Muralidhar"
+              role1=""
+              role2="Associate Dean"
+              image="https://su.psgtech.ac.in/image/team/faculty/muralidhar.jpg"
+            />
+            <Person
+              name="Mr. T. Venkatachalam"
+              role1=""
+              role2="Faculty Advisor"
+              image="https://su.psgtech.ac.in/image/team/faculty/venkatachalam.jpg"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col mt-12">
           <div className="font-bold text-3xl text-center">
             Office Bearers of the Students Union
           </div>
-          <div className="flex flex-row items-center gap-x-8 justify-center mt-4">
-            <div className="rounded-2xl bg-black text-white px-4 py-2">
-              2015 - 2016
-            </div>
-            <div className="rounded-2xl bg-black text-white px-4 py-2">
-              2016 - 2017
-            </div>
-            <div className="rounded-2xl bg-black text-white px-4 py-2">
-              2017 - 2018
-            </div>
-            <div className="rounded-2xl bg-black text-white px-4 py-2">
-              2018 - 2019
-            </div>
-            <div className="rounded-2xl bg-black text-white px-4 py-2">
-              2019 - 2020
-            </div>
-            <div className="rounded-2xl bg-black text-white px-4 py-2">
-              2020 - 2021
-            </div>
-            <div className="rounded-2xl bg-black text-white px-4 py-2">
-              2021 - 2022
-            </div>
+          <div className="flex-auto lg:flex flex-row items-center gap-x-8 justify-center mt-4 text-center">
+            {getYears().map((year) => (
+              <button
+                className={`rounded-2xl ${isClicked ? "bg-[#aea8a5]" : "bg-black"} text-white px-4 py-2 mt-2`}
+                onClick={() => {
+                  setIsClicked(true);
+                  console.log(year);
+                  setYearButton(team[year]);
+                }}
+              >
+                {year}
+              </button>
+            ))}
           </div>
-          <div className="flex flex-row  mt-4">
+          <div className="flex-auto lg:flex flex-row  mt-4">
             <Person
-              name="Mr. Dharmendra R"
-              image="https://su.psgtech.ac.in/image/team/student/2022-2023/Dharmendra.jpeg"
-              role1="Chairperson"
-              role2="Final Year BE RAE"
+              name={chair.name}
+              image={chair.image_url}
+              role1={chair.role}
+              role2={chair.deptyos}
             />
             <Person
-              name="Mr. Mano M"
-              image="https://su.psgtech.ac.in/image/team/student/2022-2023/Mano.jpeg"
-              role1="Co-Chairperson"
-              role2="Final Year BE Mech(SW)"
+              name={CoChair.name}
+              image={CoChair.image_url}
+              role1={CoChair.role}
+              role2={CoChair.deptyos}
             />
             <Person
-              name="Mr. Aditya Varma"
-              image="https://su.psgtech.ac.in/image/team/student/2022-2023/Aditya.jpeg"
-              role1="Secretary(Men)"
-              role2="3rd Year BE CSE"
+              name={Secremale.name}
+              image={Secremale.image_url}
+              role1={Secremale.role}
+              role2={Secremale.deptyos}
             />
             <Person
-              name="Ms. Sri Athrukshna B"
-              image="https://su.psgtech.ac.in/image/team/student/2022-2023/Athrukshna.jpeg"
-              role1="Secretary(Women)"
-              role2="3rd Year BE PROD"
+              name={Secrefemale.name}
+              image={Secrefemale.image_url}
+              role1={Secrefemale.role}
+              role2={Secrefemale.deptyos}
             />
             <Person
-              name="Ms. Pavana S"
-              image="https://su.psgtech.ac.in/image/team/student/2022-2023/Pavana.jpeg"
-              role1="Secretary(Science)"
-              role2="3rd Year MSc FDM"
+              name={SecreScie.name}
+              image={SecreScie.image_url}
+              role1={SecreScie.role}
+              role2={SecreScie.deptyos}
             />
           </div>
         </div>
