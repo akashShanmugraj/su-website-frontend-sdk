@@ -7,7 +7,7 @@ const Navbar = ({ canScrollAdjust = false }) => {
   const [onTop, setOnTop] = useState(canScrollAdjust);
 
   const changeOnTop = () => {
-    console.log(window);
+    // console.log(window);
     if (!canScrollAdjust) return;
     if (window.scrollY >= 100) {
       setOnTop(false);

@@ -6,7 +6,7 @@ import { BsTelephone } from "react-icons/bs";
 
 const ContactUs = () => {
   return (
-    <footer className="bg-black w-full p-8">
+    <footer className="bg-black w-full p-8 mt-4">
       <h1 className="text-white font-sans tracking-wider text-4xl uppercase font-semibold">
         Contact Us
       </h1>
