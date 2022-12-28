@@ -10,8 +10,8 @@ const Gallery = () => {
   return (
     <Layout>
       <div className="p-8 w-full">
-        <h1 className="text-black tracking-wider text-4xl font-bold uppercase mb-4">
-          Gallery
+        <h1 className="text-black tracking-wider text-4xl uppercase mb-4 text-center">
+          Our <span className="font-bold">Gallery</span>
         </h1>
         <GalleryAccordion title="Republic Day 2022" />
         <GalleryAccordion title="Republic Day 2022" />
@@ -56,7 +56,7 @@ export const GalleryAccordion = ({ title = "" }) => {
         <h1 className="text-3xl font-semibold">{title}</h1>
       </div>
       {!isHidden && (
-        <div className="flex flex-wrap">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2">
           {photos.map((photo) => (
             <img
               // loading="lazy"
