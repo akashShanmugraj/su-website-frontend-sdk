@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Navbar from "../components/NavBar.js";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { MdOutlineGraphicEq } from "react-icons/md";
@@ -6,6 +5,9 @@ import { FiSun } from "react-icons/fi";
 import { BsTrophy } from "react-icons/bs";
 import { BiLink } from "react-icons/bi";
 import ContactUs from "../components/ContactUs.js";
+import { ANNOUNCEMENT_URL } from "../API/config";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const COVER_IMAGE_URL =
   "https://images.unsplash.com/photo-1665780993894-ceb3a89bc5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
@@ -212,6 +214,7 @@ const IconBackgroundSection = ({ title, icon, body }) => {
       })}
       <div className="p-3 rounded-full bg-emerald-800 text-white w-fit shadow-lg ">
         {React.cloneElement(icon, {
+
           size: 32,
         })}
       </div>
@@ -237,35 +240,41 @@ const StatSection = ({ stats }) => {
 };
 
 const Announcements = () => {
-  const dummyAnnouncements = [
-    {
-      type: "Event",
-      title: "ICAARS 2022",
-      date: "21st - 23rd January 2022",
-      body: "The First and Second International Conference on Advancements in Automation, Robotics and Sensing was hosted in Coimbatore, India by the Department of Robotics and Automation Engineering, PSG College of Technology",
-      link: "https://www.psgtech.edu/icaars2022/",
-    },
-    {
-      type: "Event",
-      title: "INTRAMS 2022",
-      date: "21st - 23rd January 2022",
-      body: "Cultural events are events designed for entertainment and enjoyment of a more or less wide audience.",
-      link: "https://www.psgtech.edu/intrams2022/",
-    },
-    {
-      type: "Classified",
-      title: "Need volunteers for Republic Day",
-      date: "25th January 2022",
-      body: "Volunteers are needed for Republic Day celebrations at PSG College of Technology",
-      link: "https://www.psgtech.edu/",
-    },
-  ];
+  const [announcements, setAnnouncements] = useState([]);
 
-  const [announcements, setAnnouncements] = useState([
-    ...dummyAnnouncements,
-    ...dummyAnnouncements,
-    ...dummyAnnouncements,
-  ]);
+  const sendrequest = async ()=>{
+    const res = await axios.get(`${ANNOUNCEMENT_URL}`).catch((err)=>console.log(err));
+    const data =await res.data;
+    return data;
+  }
+
+  useEffect(()=>{
+    sendrequest().then((data)=>setAnnouncements(data));
+  },[]);
+
+  // const dummyAnnouncements = [
+  //   {
+  //     type: "Event",
+  //     title: "ICAARS 2022",
+  //     date: "21st - 23rd January 2022",
+  //     body: "The First and Second International Conference on Advancements in Automation, Robotics and Sensing was hosted in Coimbatore, India by the Department of Robotics and Automation Engineering, PSG College of Technology",
+  //     link: "https://www.psgtech.edu/icaars2022/",
+  //   },
+  //   {
+  //     type: "Event",
+  //     title: "INTRAMS 2022",
+  //     date: "21st - 23rd January 2022",
+  //     body: "Cultural events are events designed for entertainment and enjoyment of a more or less wide audience.",
+  //     link: "https://www.psgtech.edu/intrams2022/",
+  //   },
+  //   {
+  //     type: "Classified",
+  //     title: "Need volunteers for Republic Day",
+  //     date: "25th January 2022",
+  //     body: "Volunteers are needed for Republic Day celebrations at PSG College of Technology",
+  //     link: "https://www.psgtech.edu/",
+  //   },
+  // ];
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -274,22 +283,22 @@ const Announcements = () => {
         <div className="w-[70%] h-[1px] mt-1 bg-white"></div>
       </div>
       <div className="flex flex-col space-y-6 w-full py-4 h-[650px] overflow-y-auto">
-        {announcements.map((anmt, index) => (
+        {announcements.map((announcements, index) => (
           <div className="px-8">
-            <p className="text-sm text-gray-300 italic ">{anmt.type}</p>
+            <p className="text-sm text-gray-300 italic ">{announcements.type}</p>
             <div className="flex w-full">
               <h1 className=" text-white font-bold font-sans w-2/3">
-                {anmt.title}
+                {announcements.title}
               </h1>
               <p className="text-xs text-gray-300 text-right whitespace-nowrap">
-                {anmt.date}
+                {announcements.date}
               </p>
             </div>
             <div className="flex w-full mt-1">
               <p className="text-xs text-gray-100 text-ellipsis [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] overflow-hidden">
-                {anmt.body}
+                {announcements.body}
               </p>
-              <a href={anmt.link}>
+              <a href={announcements.link}>
                 <BiLink
                   size={24}
                   className="ml-4 text-white hover:text-gray-400"
