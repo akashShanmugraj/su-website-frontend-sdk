@@ -4,23 +4,25 @@ import { TbExternalLink } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Layout from "./Layout.js";
 import { fetchAllClubsLogo } from "../API/calls.js";
+// import PersonList from "./ClubDescription.js";
 
-function ClubListing() {
+function ClubListing(props) {
     return (
-
-            <div className={'max-w-sm bg-white border border-gray-200 rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700'}>
-                <a>
-                    <img className={"rounded-t-lg"} src={"https://images.unsplash.com/photo-1577985051167-0d49eec21977?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2089&q=80"}/>
-                </a>
-                <div className={"p-5"}>
-                    <a href = "#">
-                        <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Book Readers Club</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Smells like paper, just outta press</p>
-                </div>
-            </div>
+            <a href={props.clubLink}>
+              <div className={'max-w-sm bg-white border-2 border-black rounded-3xl overflow-hidden'}>
+                  <a>
+                      <img className={"rounded-t-lg"} src={props.clubImage}/>
+                  </a>
+                  <div className={"p-5"}>
+                      <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900">{props.clubName}</h5>
+                      <p class="mb-3 font-normal text-gray-700">{props.clubTagLine}</p>
+                  </div>
+              </div>
+            </a>
     )
 }
+
+
 const Clubs = () => {
   const [clubs, setClubs] = useState([]);
 
@@ -35,13 +37,15 @@ const Clubs = () => {
       });
   }, []);
 
+
+
   return (
     <Layout>
       <h1 className="text-4xl uppercase text-center mt-16">
         Our <span className="font-bold">Clubs</span>
       </h1>
         <div className={'grid grid-cols-4 gap-10 py-10'}>
-            <ClubListing />
+            <ClubListing clubName = "BRC CLub" clubImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Mercado_de_Col%C3%B3n%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_07.JPG/750px-Mercado_de_Col%C3%B3n%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_07.JPG"/>
             <ClubListing />
             <ClubListing />
             <ClubListing />
