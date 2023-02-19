@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { TbExternalLink } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Layout from "./Layout.js";
-import { fetchAllClubsLogo } from "../API/calls.js";
+import { fetchClubDescription } from "../API/calls.js";
 //? import PersonList from "./ClubDescription.js";
 
 function ClubListing(props) {
@@ -15,7 +15,7 @@ function ClubListing(props) {
                   </a>
                   <div className={"p-5"}>
                       <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900">{props.clubName}</h5>
-                      <p class="mb-3 font-normal text-gray-700">{props.category}</p>
+                      <p class="mb-3 font-normal text-gray-700"><i>{props.clubTagLine}</i></p>
                   </div>
               </div>
             </a>
@@ -38,8 +38,15 @@ const Clubs = () => {
       });
   }, []);
 
-var sampleClubData = {"_id":"63638b8e2f6d377ee358f1d7","clubName":"Civil Engineering Association","clubId":"cea","category":"Associations","__v":0}
-// console.log(sampleClubData.clubName)
+// * console.log(clubs)
+// * ⬆️ works
+
+// todo Render Card component directly from API Fetch
+// todo Exclude ADMIN at 0 index while rendering 
+
+// ? API call does not have image link or clubDescription/clubTagLine
+// ? All clubImages (if present) would not be in same dimensions and would cause misproportionate  
+// ? Considering adding "category" field inside the card, with or without replacing TagLine
 
   return (
     <Layout>
@@ -47,7 +54,7 @@ var sampleClubData = {"_id":"63638b8e2f6d377ee358f1d7","clubName":"Civil Enginee
         Our <span className="font-bold">Clubs</span>
       </h1>
         <div className={'grid grid-cols-4 gap-10 py-10'}>
-            <ClubListing clubName = "BRC CLub" clubImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Mercado_de_Col%C3%B3n%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_07.JPG/750px-Mercado_de_Col%C3%B3n%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_07.JPG"/>
+            <ClubListing clubName = "BRC Club" clubImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Mercado_de_Col%C3%B3n%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_07.JPG/750px-Mercado_de_Col%C3%B3n%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_07.JPG"/>
             {/* <ClubListing sampleClubData/> */}
             <ClubListing />
             <ClubListing />
