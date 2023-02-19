@@ -21,7 +21,7 @@
 
 // ! import React from 'react';
 // ! import axios from 'axios';
-
+// !
 // ! export default function PersonList() {
 // !     state = {
 // !         persons: []
@@ -34,6 +34,22 @@
 // !       console.log(persons)
 // !   }
 
+// * Got this code to work. no idea why
+
+// * const Clubs = () => {
+// *     const [clubs, setClubs] = useState({});
+// *     useEffect(() => {
+// *       axios.get('http://localhost:3002/api/clubs')
+// *         .then((res) => {
+// *           let clubData = res.data
+// *           setClubs(clubData)
+// *           // console.log(clubs)
+// *         })
+// *         .catch((err) => {
+// *           console.log(err);
+// *         });
+// *     }, []);
+  
 // // Insignificant parts of code extracted from interent.
 
 //  // render() {
