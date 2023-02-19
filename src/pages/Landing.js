@@ -280,7 +280,7 @@ const Announcements = () => {
     <div className="w-full flex flex-col items-center">
       <div className="flex flex-col items-center mb-4">
         <h1 className="text-2xl font-serif text-white">Announcements</h1>
-        <div className="w-[70%] h-[1px] mt-1 bg-white"></div>
+        <div className="w-[70%] h-[1px] mt-1 bg-white" />
       </div>
       <div className="flex flex-col space-y-6 w-full py-4 h-[650px] overflow-y-auto">
         {announcements.map((announcements, index) => (

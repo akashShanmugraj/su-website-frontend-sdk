@@ -92,7 +92,7 @@ const NavItem = ({ text, to = "/" }) => {
             className={`h-full ${
               isHover ? "w-[70%]" : "w-0"
             } transition-all bg-white origin-center`}
-          ></div>
+           />
         </div>
       </HashLink>
     </div>

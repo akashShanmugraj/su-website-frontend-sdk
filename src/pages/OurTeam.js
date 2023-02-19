@@ -20,7 +20,7 @@ const Person = ({ name, role1 = "", image, role2 = "" }) => {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat"
           }}
-        ></div>}
+         />}
       </div>
       <div className=" w-full mt-8 font-bold text-lg h-[10%] whitespace-nowrap">
         {name}
