@@ -16,7 +16,7 @@ const ClubLanding = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-        ></div>
+         />
         <div className="flex items-center space-x-6 -mt-48">
           <div
             className="w-64 h-64 aspect-square rounded-full border-8 border-white ml-16"
@@ -25,7 +25,7 @@ const ClubLanding = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-          ></div>
+           />
           <div className="">
             <p className="text-white font-sans text-4xl font-bold">Red Bull</p>
             <p className="text-gray-200">Since 2006</p>

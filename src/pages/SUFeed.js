@@ -45,7 +45,7 @@ const SUFeed = () => {
           <section className="w-full border-gray-400 border-2 rounded-lg">
             <div className="p-6 border-b-gray-400 border-b-2">
               <header className="flex items-center space-x-4">
-                <div className="rounded-full w-8 h-8 aspect-square bg-gray-600"></div>
+                <div className="rounded-full w-8 h-8 aspect-square bg-gray-600" />
                 <div className="">
                   <div className="flex items-center space-x-1">
                     <p className=" font-semibold">{event.orgName}</p>
@@ -60,7 +60,7 @@ const SUFeed = () => {
               </p>
             </div>
             <div className="w-full">
-              <div className="aspect-video"></div>
+              <div className="aspect-video" />
             </div>
             <div className="w-full flex p-6 space-x-4">
               <div className="flex-1 bg-emerald-600 hover:bg-emerald-800 w-full rounded-full px-6 py-2 text-center text-lg text-white font-semibold">
